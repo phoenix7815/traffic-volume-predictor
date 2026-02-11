@@ -1,14 +1,22 @@
 import os
 import random
+import numpy as np
 import pandas as pd
 
 class DataLoader:
-    def __init__(self, path_to_csv, sensor_split=0.9, time_split=0.8):
+    def __init__(self, path_to_csv, sensor_split=0.9, time_split=0.8, index: np.ndarray = None):
         if not os.path.exists(path_to_csv):
             raise FileNotFoundError(f"File {path_to_csv} does not exist.")
-        
-        # Load with first column as index (time steps)
-        self.data = pd.read_csv(path_to_csv, index_col=0)
+
+        if index is None:
+            # Load with first column as index (time steps)
+            self.data = pd.read_csv(path_to_csv, index_col=0)
+        else:
+            # Load without index and set custom index
+            self.data = pd.read_csv(path_to_csv)
+            if len(index) != len(self.data):
+                raise ValueError(f'{len(index)} timestamps provided, but CSV has {len(self.data)} rows.')
+            self.data.set_index(pd.Index(index), inplace=True)
         
         rows, cols = self.data.shape
         if rows == 0 or cols == 0:

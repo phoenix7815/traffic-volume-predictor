@@ -1,7 +1,7 @@
 Implement clustering of sensors and find way how to cluster efficiently.
-Encode date and time as well, not only the traffic occupancy, for better prediction
+Encode date and time as well, not only the traffic occupancy / volume, for better prediction
 Implement GA and FL for fine tuning hyperparameters
 Hybrid Loss function for better performance
 Implement early stopping to prevent overfitting
 More models like LSTM, maybe some lighter models for faster inference
-Implement test script and metrics visualization modules
+Implement metrics visualization modules

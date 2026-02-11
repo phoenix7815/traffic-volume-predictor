@@ -127,7 +127,7 @@ def train_lstm(loss, data:pd.DataFrame, input_size:int = 6, output_size: int = 1
 
     # Save model
     model_path = os.path.join('disk', f'{model_name}.pth')
-    model.save_model(model_path)
+    torch.save(model,model_path)
     print(f"\nModel saved to: {model_path}")
 
     return model, train_losses
